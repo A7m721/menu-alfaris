@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منيو صالون مركز الفارس</title>
+    
+    <style>
+        :root {
+            --primary-color: #f1c40f; 
+            --bg-color: #121212; 
+            --card-bg: #1e1e1e;
+            --text-light: #ffffff;
+            --text-muted: #aaaaaa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            /* استخدام خطوط النظام الأساسية التي لا تحتاج إنترنت */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, #000000, transparent);
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1; /* لجعل الفوتر ينزل لأسفل الصفحة دائماً */
+            width: 100%;
+        }
+
+        .search-box {
+            width: 100%;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 30px;
+            border: 2px solid #333;
+            background-color: var(--card-bg);
+            color: #fff;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(241, 196, 15, 0.2);
+        }
+
+        .category {
+            margin-bottom: 40px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .category-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            border-bottom: 1px dashed #444;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            transition: all 0.2s ease;
+        }
+
+        .service-item:hover {
+            transform: translateX(-5px);
+        }
+
+        .service-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .dots {
+            flex-grow: 1;
+            border-bottom: 2px dotted #444;
+            margin: 0 15px;
+            position: relative;
+            top: -5px;
+        }
+
+        .service-price {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .currency {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+
+        .no-results {
+            text-align: center;
+            color: var(--text-muted);
+            display: none;
+            padding: 20px;
+        }
+
+        /* تنسيق الفوتر (معلومات التواصل) */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 2px solid var(--primary-color);
+            padding: 30px 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-info p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        .footer-info span {
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        .footer-info a {
+            color: #fff;
+            text-decoration: none;
+            direction: ltr;
+            display: inline-block;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .footer-info a:hover {
+            color: var(--primary-color);
+        }
+
+        /* تنسيق حقوق المصمم بشكل هادئ */
+        .developer-credit {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+            font-size: 0.85rem;
+            color: #777; /* لون رمادي هادئ جداً */
+            direction: rtl;
+        }
+
+        .developer-credit span {
+            font-family: Arial, sans-serif;
+        }
+
+        .developer-credit a {
+            color: #777;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .developer-credit a:hover {
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .service-name { font-size: 1rem; }
+            .service-price { font-size: 1.1rem; }
+            .footer-info p { font-size: 1rem; }
+            .developer-credit { font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1> مركز الفارس</h1>
+        <p>قائمة الخدمات والأسعار</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث عن خدمة (مثال: حلاقة ذقن، صبغة)...">
+        </div>
+
+        <div id="menuContainer">
+            <!-- سيتم إضافة الخدمات هنا بواسطة الجافاسكريبت محلياً -->
+        </div>
+        
+        <div id="noResults" class="no-results">
+            عذراً، لم يتم العثور على الخدمة المطلوبة.
+        </div>
+
+    </div>
+
+    <!-- قسم الفوتر ومعلومات الصالون والمصمم -->
+    <footer>
+        <div class="footer-info">
+            <p><span>إدارة:</span> ياسر العوضي</p>
+            <p><span>العنوان:</span> بحره وحدا، المملكة العربية السعودية</p>
+            <p><span>رقم الهاتف:</span> <a href="tel:0560733979">0560733979</a></p>
+        </div>
+        
+        <!-- حقوق المصمم -->
+        <div class="developer-credit">
+            تصميم وبرمجة: <span dir="ltr">Eng-a7med-ra</span> | للتواصل: <a href="tel:01091889366">01091889366</a>
+        </div>
+    </footer>
+
+    <script>
+        const menuData =[
+            {
+                category: "الحلاقة والقص",
+                items:[
+                    { name: "حلاقة شعر + ذقن", price: 35 },
+                    { name: "حلاقة شعر عادية", price: 25 },
+                    { name: "حلاقة ذقن تحديد", price: 20 },
+                    { name: "حلاقة ذقن سكسوكة", price: 20 },
+                    { name: "حلاقة ذقن موس كامل", price: 15 },
+                    { name: "حلاقة شعر طفل عادية", price: 20 },
+                    { name: "استشوار", price: 20 }
+                ]
+            },
+            {
+                category: "الصبغات",
+                items:[
+                    { name: "صبغة بيجن", price: 40 },
+                    { name: "صبغة شامبو", price: 45 },
+                    { name: "صبغة ذقن", price: 30 },
+                    { name: "صبغة ذقن عرسان", price: 50 }
+                ]
+            },
+            {
+                category: "العناية بالبشرة والأقنعة",
+                items:[
+                    { name: "قناع نعناع", price: 25 },
+                    { name: "قناع فلبيني", price: 50 },
+                    { name: "قناع طين VIP", price: 50 },
+                    { name: "شمع", price: 25 },
+                    { name: "سنفرة عادية", price: 20 },
+                    { name: "سنفرة مع فوطة حارة", price: 25 },
+                    { name: "سنفرة مع البخار", price: 30 },
+                    { name: "نصف تنظيف", price: 60 },
+                    { name: "نص تنظيف (قسم التصفيف)", price: 80 },
+                    { name: "تنظيف كامل ليزر مع شفط الدهون", price: 150 }
+                ]
+            },
+            {
+                category: "العناية بالشعر والجسم",
+                items:[
+                    { name: "معالج للقشرة", price: 120 },
+                    { name: "معالج للشعر", price: 120 },
+                    { name: "بروتين للشعر", price: 250 },
+                    { name: "حمام مغربي", price: 150 },
+                    { name: "حمام زيت عادي", price: 25 },
+                    { name: "حمام زيت مع الجهاز", price: 40 }
+                ]
+            }
+        ];
+
+        const menuContainer = document.getElementById('menuContainer');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+
+        function renderMenu(data) {
+            menuContainer.innerHTML = '';
+            let hasResults = false;
+
+            data.forEach(cat => {
+                if (cat.items.length === 0) return; 
+
+                hasResults = true;
+
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+
+                const categoryTitle = document.createElement('h2');
+                categoryTitle.className = 'category-title';
+                categoryTitle.textContent = cat.category;
+                categoryDiv.appendChild(categoryTitle);
+
+                cat.items.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'service-item';
+                    
+                    itemDiv.innerHTML = `
+                        <span class="service-name">${item.name}</span>
+                        <span class="dots"></span>
+                        <span class="service-price">${item.price} <span class="currency">ر.س</span></span>
+                    `;
+                    
+                    categoryDiv.appendChild(itemDiv);
+                });
+
+                menuContainer.appendChild(categoryDiv);
+            });
+
+            noResults.style.display = hasResults ? 'none' : 'block';
+        }
+
+        // عرض المنيو
+        renderMenu(menuData);
+
+        // تفعيل البحث محلياً بدون خوادم
+        searchInput.addEventListener('input', function(e) {
+            const searchTerm = e.target.value.trim().toLowerCase();
+            
+            const filteredData = menuData.map(cat => {
+                const filteredItems = cat.items.filter(item => 
+                    item.name.toLowerCase().includes(searchTerm)
+                );
+                return { ...cat, items: filteredItems };
+            });
+
+            renderMenu(filteredData);
+        });
+    </script>
+</body>
+</html>
